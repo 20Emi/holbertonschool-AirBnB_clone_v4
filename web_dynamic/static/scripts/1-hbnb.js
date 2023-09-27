@@ -1,15 +1,19 @@
 #!/usr/bin/node
 $(document).ready(function () {
-    const amenities = {};
+    let amenities = {};
 
     $('input[type="checkbox"]').change(function () {
         if ($(this).is(':checked')) {
-            amenities[$(this).data('name')] = $(this).data('id');
+            amenities[$(this).data('id')] = $(this).data('name');
         } else {
-            delete amenities[$(this).data('name')];
+            delete amenities[$(this).data('id')];
         }
-        const idsamenities = Object.keys(amenities);
-        const listamenities = idsamenities.join(', ');
-        $(' .amenities h4').text(listamenities);
+        let idsamenities = Object.values(amenities);
+        let listamenities = idsamenities.join(', ');
+        if (listamenities.length > 30) {
+            listamenities = listamenities.substring(0, 30) + '...';
+        }
+        listamenities += '&nbsp;'
+        $('.amenities h4').html(listamenities);
     });
 });

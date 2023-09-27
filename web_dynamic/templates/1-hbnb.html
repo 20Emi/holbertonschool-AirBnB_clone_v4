@@ -3,13 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
+    <!--
+			Random ensures that the stylesheets are alwways considered as different resources by the browser,
+			even if the cache_id remains the same
+		-->
+    <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{ cache_id }}&{{ 'now'|random }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{ cache_id }}&{{ 'now'|random }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?{{ cache_id }}&{{ 'now'|random }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css?{{ cache_id }}&{{ 'now'|random }}">
+    <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}&{{ 'now'|random }}">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="..static/scripts/1-hbnb.js?{{ cache_id }}"></script>
-    <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{ cache_id }}">
-    <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{ cache_id }}">
-    <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?{{ cache_id }}">
-    <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css?{{ cache_id }}">
-    <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}">
+    <script type="text/javascript" src="static/scripts/1-hbnb.js?{{ cache_id }}&{{ 'now'|random }}"></script>
     <link rel="icon" href="../static/images/icon.png" />
     <title>HBnB</title>
 </head>
@@ -44,8 +48,7 @@
                 <div class="popover">
                     <ul>
                         {% for amenity in amenities %}
-                        <li><input type="checkbox" style="width: 10 px" data-id="{{amenity_id}}"
-                                data-name="{{amenity_name}}"> {{
+                        <li><input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">{{
                             amenity.name }}</li>
                         {% endfor %}
                     </ul>
