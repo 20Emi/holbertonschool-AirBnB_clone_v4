@@ -24,7 +24,7 @@ $(document).ready(function () {
     } else {
       $('#api_status').removeClass('available');
     }
-    $('#Search').click(function () {
+    $('button').click(function () {
       let filters = { amenities: Object.keys(amenities) };
       $.ajax({
         type: 'POST',
@@ -32,7 +32,7 @@ $(document).ready(function () {
         data: JSON.stringify(filters),
         contentType: 'application/json',
         success: function (data) {
-          $('.places').empty();
+          $('section.places').empty();
           data.forEach((place) => {
             $.ajax({
               type: 'GET',
